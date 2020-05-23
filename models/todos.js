@@ -2,10 +2,9 @@ const mongoose = require('mongoose')
 
 const todoScheme = mongoose.Schema({
   name: String,
-  state: {
-    type: String,
-    enum: ['active', 'completed'],
-    default: 'active',
+  done: {
+    type: Boolean,
+    default: false,
   },
 })
 
