@@ -1,6 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const logger = require('morgan')
 const cors = require('cors')
 const app = express()
 
@@ -9,6 +10,7 @@ mongoose.connect('mongodb://localhost:27017/learn-api', {
   useUnifiedTopology: true,
 })
 
+app.use(logger('dev'))
 app.use(
   bodyParser.urlencoded({
     extended: true,
