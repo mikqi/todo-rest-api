@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Test API</title>
+</head>
+<body>
+	<h1>Todo</h1>
+	<div id="content"></div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+	<script>
+		const $content = document.getElementById('content')
+		axios.get('http://localhost:3001/api/todos')
+			.then((res) => {
+				res.data.data.forEach(todo => {
+					const todoList = document.createElement('div')
+					const strike = document.createElement('s')
+					const todoListText = document.createTextNode(todo.name)
+					if (todo.done) {
+						strike.appendChild(todoListText)
+						todoList.appendChild(strike)
+					} else {
+						todoList.appendChild(todoListText)
+					}
+					$content.appendChild(todoList)
+				})
+			})
+			.catch(err => {
+				console.log(err)
+			})
+
+		axios.get('http://localhost:3001')
+	</script>
+</body>
+</html>

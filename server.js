@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 const logger = require('morgan')
 const cors = require('cors')
 const app = express()
+const cors = require('cors')
 
 mongoose.connect('mongodb://localhost:27017/learn-api', {
   useNewUrlParser: true,
@@ -23,7 +24,11 @@ app.get('/', function (req, res) {
   res.send('Hello Express')
 })
 
-app.use('/api', require('./routes/api'))
+app.use(
+  '/api',
+  cors({ origin: 'http://localhost:3000' }),
+  require('./routes/api')
+)
 
 app.listen(3001, function () {
   console.log('App listen on port 3001')
